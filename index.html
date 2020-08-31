@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Google Hire Me</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="Google Hire me!" />
+    <meta name="Copyright" content="ripx80" />
+    <meta name="keywords" content="Google, Hire, Me" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" media="all" href="css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="js/jquery.lettering.js"></script>
+    <script src="js/circletype.min.js"></script>
+</head>
+
+<body>
+    <div class="row-fluid main-container">
+        <div class="main-circle smoothie">
+            <div class="first-circle">
+                <h1 class="first-hash go-visible hash">119e66d117ae8f0cfaf46ff97f0344f21ba0487574db7ea5f36d5399fe948792
+                </h1>
+            </div>
+            <div class="second-circle">
+                <h1 class="second-hash go-visible hash">6312b4b9baf12770fd7dc7307169bfa3676fbec14485abe37264952d8502645e
+                </h1>
+            </div>
+            <div class="third-circle">
+                <h1 class="third-hash go-visible hash">a074430f352b879e7939d4290bf82c99b436b900</h1>
+            </div>
+            <div class="fourth-circle">
+                <h1 class="fourth-hash go-visible hash">986c37480b1f1c2e443504b38b6361b4</h1>
+            </div>
+            <div class="pwin">
+                <div id="char_maps" class="go-visible"><img class="letter-img" src="imgs/maps.png" alt="" /></div>
+                <div id="char_drive" class="go-visible"><img class="letter-img" src="imgs/drive.png" alt="" /></div>
+                <div id="char_earth" class="go-visible"><img class="letter-img" src="imgs/earth.png" alt="" /></div>
+                <div id="char_chrome" class="go-visible"><img class="letter-img" src="imgs/chrome.png" alt="" /></div>
+                <input id="pass" type="input/text" name="pass" size="15" autofocus="autofocus"></input>
+                <div id="msg"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('.first-hash').circleType({ radius: 272 });
+        $('.second-hash').circleType({ radius: 232 });
+        $('.third-hash').circleType({ radius: 192 });
+        $('.fourth-hash').circleType({ radius: 152 });
+        $('#msg').append('Hello Google <br /> Wait a Moment I do that for you.');
+        $('#pass').val('');
+        //show_blackbox();
+        var start = setInterval(ghost_writer, 2000);
+        function ghost_writer() {
+            window.clearInterval(start);
+            var c = 0;
+            var in_pw = [4, 8, 15, 16, 23, 42];
+            var p = $('#pass');
+
+            var intval = setInterval(function () {
+                if (c >= 6) {
+                    $('#msg').empty();
+                    $('#pass').css('opacity', 0);
+                    pw_valid();
+                    window.clearInterval(intval);
+                } else {
+                    p.val(p.val() + ' ' + in_pw[c]);
+                    c++;
+                }
+            }, 2000);
+        };
+        function pw_valid() {
+            var chars = ['maps', 'drive', 'earth', 'chrome'];
+            var cc = 0;
+            var circles = ['first', 'second', 'third', 'fourth'];
+            $('#msg').append('Google authenticated');
+            var introt = setInterval(function () {
+                if (cc >= 4) {
+                    window.clearInterval(introt);
+                    setTimeout(function () { $('.main-circle').css('opacity', 0) }, 4000);
+                    setTimeout(function () { show_blackbox() }, 6000);
+                } else {
+                    $('.' + circles[cc] + '-hash').css('opacity', 1);
+                    $('.' + circles[cc] + '-circle').addClass('rotate-five' + ((cc % 2 == 1) ? 'n' : ''));
+                    $('#char_' + chars[cc]).css('opacity', 1);
+                    cc++;
+                }
+            }, 500);
+        };
+        function show_blackbox() {
+            $('.main-circle').remove();
+            $('.main-container').append('\
+            <div id="blackbox" class="go-visible">\
+            <div class="col-md-4"><div id="console"></div></div><div class="col-md-8"><div class="ascii-console"><pre id="ascii"></pre></div></div></div>'
+            );
+            $('#blackbox').css('opacity', 1);
+            load_bike();
+            var modcnt = 0;
+            var mods = setInterval(function () {
+                var modlist = ['beer', 'axl', 'end'];
+                if (modcnt >= (modlist.length - 1)) {
+                    $('.ascii-console').empty();
+                    window.clearInterval(mods);
+                }
+                $('#console').empty();
+                $('#ascii').empty();
+                func = eval('load_' + modlist[modcnt]);
+                eval(func());
+                modcnt++;
+            }, 15000);
+        };
+        function load_bike() {
+            write_console('* creating character devices');
+            setTimeout(function () { write_console('* /motorcycling already created', 1); }, 3000);
+            setTimeout(function () { write_console('* load favorite motorbike', 2); }, 5000);
+            setTimeout(function () { $('#ascii').load('imgs/bike.txt'); }, 7000);
+        };
+        function load_beer() {
+            write_console('* create /beertasting');
+            setTimeout(function () { write_console('* load favorite beer', 2); }, 2000);
+            setTimeout(function () { $('#ascii').load('imgs/beer.txt'); }, 6000);
+        };
+        function load_axl() {
+            write_console('* /dragons already created');
+            setTimeout(function () { write_console('* load favored pet... in color :-)', 2); }, 3000);
+            setTimeout(function () { write_console('* load module radeon...', 2); }, 5000);
+            setTimeout(function () { $('.ascii-console').empty(); $('.ascii-console').append('<img src="imgs/axolotl.jpg" alt="" />'); }, 7000);
+            //$('#ascii').load('axl.txt');
+        };
+        function write_console(txt = '', tab) {
+            $('#console').append('<span' + ((tab) ? ' style="margin-left:' + (tab * 30) + 'px;"' : '') + '>' + txt + '</span><br />');
+        };
+        function load_end() {
+            write_console('Thanks Google for watching these stuff...');
+            setTimeout(function () { write_console('Please Hire me...', 1); }, 3000);
+            setTimeout(function () { write_console('I will do cooler stuff for you!', 1); }, 5000);
+            setTimeout(function () { write_console('Good Bye... exit("We see us on ->")', 2); }, 7000);
+            setTimeout(function () { window.location.href = "https://www.google.ch/"; }, 10000);
+
+        };
+    </script>
+</body>
+
+</html>
